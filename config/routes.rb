@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
  
+ root to: "public/homes#top"
+ 
+ get "/about"=>"public/homes#about"
+ 
+  namespace :admin do
+   get '/' => "homes#top"
+  end
+  
  namespace :admin do
   resources :order_details, only: [:update] 
   resources :orders, only: [:orders, :update, :show] 
   resources :customers, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update] 
   resources :items, only: [:index, :new, :create, :show, :edit, :update] 
-  resources :homes, only: [:top] 
   end
  
  namespace :public do
@@ -15,7 +22,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create, :index, :show]
   resource :customers,only:[:show, :edit, :update]
   resources :items, only: [:index, :show]
-  resources :homes, only: [:top, :about]
   end
   
   namespace :public do
