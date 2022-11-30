@@ -2,9 +2,10 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -52,6 +53,7 @@
                 <%= link_to destroy_admin_session: :delete, class: "nav-link text-light" do %>
                 <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
                 <% end %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
               </li>
               
               <% elsif customer_signed_in? %>
