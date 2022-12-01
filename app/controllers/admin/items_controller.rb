@@ -3,9 +3,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
   end
 
   def create
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to admin_genres.path
   end
 
   def show

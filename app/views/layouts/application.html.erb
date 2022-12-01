@@ -50,10 +50,9 @@
               </li>
 
               <li class="nav-item">
-                <%= link_to destroy_admin_session: :delete, class: "nav-link text-light" do %>
+                <%= link_to destroy_admin_session_path,method: :delete, class: "nav-link text-light" do %>
                 <span><i class="fas fa-sign-out-alt"></i> ログアウト</span>
                 <% end %>
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
               </li>
               
               <% elsif customer_signed_in? %>
@@ -117,8 +116,7 @@
     </header>
     <main class="mb-aut">
       <p id="notice"><%= flash[:notice] %></p>
-      <div class="container px-5 px-sm-0">
-       <div class="row">
-    <%= yield %>
+      <%= yield %>
+    </main>
   </body>
 </html>
