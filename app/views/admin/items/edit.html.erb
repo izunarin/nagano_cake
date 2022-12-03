@@ -1,2 +1,41 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class="container">
+  <h1>商品一覧</h1>
+  <div class="row">
+    <% @item.each do |item| %>
+    <h4>商品画像</h4>
+    <%= item.image %>
+    <table>
+   <tr>
+    <th><h4>商品名</h4></th>
+    <td><%= item.name %></td>
+   </tr>
+   
+   <tr>
+    <th><h4>商品説明</h4></th>
+    <td><%= item.introduction %></td>
+   </tr>
+   
+   <tr>
+    <th><h4>ジャンル</h4></th>
+    <td><%= item.genre_id %></td>
+   </tr>
+   
+   <tr>
+    <th><h4>税抜き価格</h4></th>
+    <td> <%= item.price %>円</td>
+   </tr>
+  
+  <tr>
+    <th><h4>販売ステータス</h4></th>
+    <td><%= item.is_active %></td>
+  </tr>
+   
+   <tr>
+    <td></td>
+    <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
+   </tr>
+  </table>
+  <% end %>
+  </div>
+</div>
+
