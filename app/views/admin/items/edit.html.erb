@@ -1,40 +1,52 @@
 <div class="container">
-  <h1>商品一覧</h1>
+  <h1>商品編集</h1>
   <div class="row">
-    <% @item.each do |item| %>
-    <h4>商品画像</h4>
-    <%= item.image %>
-    <table>
+    <%= form_with model: @item,url: admin_item_path(@item.id), method: :patch do |f| %>
+    
+ <table>
+   <tr>
+    <th width="200"><h4>商品画像</h4></th>
+    <td><%= f.file_field :image, accept: "image/*" %></td>
+   </tr>
+
    <tr>
     <th><h4>商品名</h4></th>
-    <td><%= item.name %></td>
+    <td><%= f.text_field :name, size: "50" %></td>
    </tr>
-   
+
    <tr>
     <th><h4>商品説明</h4></th>
-    <td><%= item.introduction %></td>
+    <td><%= f.text_area :introduction, cols:"50",rows:"10" %></td>
    </tr>
-   
+
    <tr>
     <th><h4>ジャンル</h4></th>
-    <td><%= item.genre_id %></td>
+    <td><%= f.select :genre_id, options_from_collection_for_select( Genre.all, :id, :name),prompt:"-- 選択してください --
+" %></td>
    </tr>
-   
+
    <tr>
     <th><h4>税抜き価格</h4></th>
-    <td> <%= item.price %>円</td>
+    <td> <%= f.text_field :price, size: "50" %>円</td>
    </tr>
-  
+
   <tr>
     <th><h4>販売ステータス</h4></th>
-    <td><%= item.is_active %></td>
+    <td>
+     <%= f.radio_button :is_active, true %>
+     <%= f.label :is_active_true, "販売中" %>
+
+     <%= f.radio_button :is_active, false %>
+     <%= f.label :is_active_false, "販売停止中" %>
+    </td>
   </tr>
-   
+
    <tr>
     <td></td>
     <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
    </tr>
   </table>
+  
   <% end %>
   </div>
 </div>
