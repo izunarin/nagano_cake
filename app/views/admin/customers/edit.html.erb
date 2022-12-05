@@ -1,2 +1,56 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
+  <div class="row">
+    <%= form_with model: @customer,url: admin_customer_path(@customer.id), method: :patch do |f| %>
+    <table>
+      <tr>
+        <th width="200">会員ID </th>
+        <td><%= f.string_field :id %></td>
+      </tr>
+      
+      <tr>
+        <th>氏名</th>
+        <td><%= f.string_field :last_name %></td>
+        <td><%= f.string_field :first_name %></td>
+      </tr>
+      
+      <tr>
+        <th>フリガナ</th>
+        <td><%= f.string_field :last_name_kana %></td>
+        <td><%= f.string_field :first_name_kana %></td>
+      </tr>
+      
+      <tr>
+        <th>郵便番号</th>
+        <td><%= f.string_field :postal_code %></td>
+      </tr>
+      
+      <tr>
+        <th>住所</th>
+        <td><%= f.string_field :address %></td>
+      </tr>
+      
+      <tr>
+        <th>電話番号</th>
+        <td><%= f.string_field :telephone_number %></td>
+      </tr>
+      
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= f.string_field :email %></td>
+      </tr>
+      
+      <tr>
+        <th>会員ステータス</th>
+        <td>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted_true, "販売中" %>
+
+         <%= f.radio_button :is_deleted, false %>
+         <%= f.label :is_deleted_false, "販売停止中" %>
+        </td>
+      </tr>
+    </table>
+    
+  </div>
+</div>

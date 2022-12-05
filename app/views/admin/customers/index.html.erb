@@ -3,7 +3,7 @@
   <div class="row">
     <table>
       <thead>
-        <tr>
+        <tr class="border-top border-bottom">
           <th width="100">会員ID</th>
           <th width="150">氏名</th>
           <th width="250">メールアドレス</th>
@@ -12,17 +12,21 @@
       </thead>
       <tbody>
         <% @customers.each do |customer| %>
-        <tr>
-          <th><%= customer.id %></th>
-          <th><%= customer.name %></th>
-          <th><%= customer.email %></th>
-          <th>
-            <% if customer_active? %>
+        <tr class="border-top border-bottom">
+          <td><%= customer.id %></td>
+          <td>
+            <%= link_to admin_customer_path(customer,id) do %>
+            <%= customer.last_name %><%= customer.first_name %>
+            <% end %>
+            </td>
+          <td><%= customer.email %></td>
+          <td>
+            <% if customer_is_deleted? %>
               有効
             <% else %>
-              大会
+              退会
             <% end %>
-          </th>
+          </td>
         </tr>
         <% end %>
       </tbody>
