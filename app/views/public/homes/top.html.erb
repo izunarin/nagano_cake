@@ -1,2 +1,50 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+   
+    <div class="col-3">
+      <table class="border">
+        <tr>
+          <th width="200" class="border-bottom text-center">ジャンル検索</th>
+        </tr>
+         <% @genres.each do |genre| %>
+        <tr>
+          <th>
+            <%= link_to public_items_path(genre_id: genre.id) do %>
+            <%= genre.name %>
+            <% end %>
+          </th>
+        </tr>
+        <% end %>
+      </table>
+
+    </div>
+
+    <div class="col-9">
+      <div class="main-container text-center">
+        <h2>ようこそ、ながのCAKEへ！</h2><br/>
+        <h2>このサイトは、ケーキ販売のECサイトになります。</h2><br/>
+        <h2>会員でない方も商品を見ることができます。</h2><br/>
+        <h2>購入には会員登録が必要になります。</h2>
+      </div>
+    </div>
+     
+     
+    <div class="container offset-md-3">
+      <h1>新着商品</h1>
+    <div class="row">
+        
+        <% @items.each do |item| %>
+        <div class="col-md-3">
+        <%= image_tag item.image, size: "200x200" %>
+        <%= item.name %><br/>
+        ￥<%= item.price %>
+        </div>
+        <% end %>
+        </div>
+        <div class="text-right">
+          <%= link_to "すべての商品を見る", public_items_path %>
+        </div>
+     </div>
+    </div>
+  </div>
+</div>

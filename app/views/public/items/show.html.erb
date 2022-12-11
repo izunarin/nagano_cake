@@ -1,2 +1,55 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+   
+    <div class="col-3">
+      <table class="border">
+        <tr>
+          <th width="200" class="border-bottom text-center">ジャンル検索</th>
+        </tr>
+         <% @genres.each do |genre| %>
+        <tr>
+          <th>
+            <%= link_to public_items_path(genre_id: genre.id) do %>
+            <%= genre.name %>
+            <% end %>
+          </th>
+        </tr>
+        <% end %>
+      </table>
+      <div class="container offset-md-3">
+
+      <div class="row">
+      <div class="w-50"><%= image_tag @item.image, size: "500x300" %></div>
+
+     <table>
+      <tr>
+       <td ><%= @item.name %></td>
+      </tr>
+
+       <tr>
+        <td><%= h(@item.introduction).gsub(/\r/, "<br>").html_safe %></td>
+       </tr>
+
+       <tr>
+        <td>￥<%= @item.price %>(税込み)</td>
+       </tr>
+       
+       <tr>
+        <td>
+          <%= link_to  do %>
+          
+          <% end %>
+        </td>
+        <td>
+          <%= link_to public_cart_items_path do %>
+          <h3 class="btn btn-primary">カートに入れる</h3>
+          <% end %>
+        </td>
+       </tr>
+
+       </table>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>

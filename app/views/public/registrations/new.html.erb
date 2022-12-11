@@ -1,29 +1,89 @@
-<h2>Sign up</h2>
+<div class="container">
+<h2>新規会員登録</h2>
+<div class="row">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
+  <div class="flex-row">
+  <table>
+    <tr>
+      <th width="200">名前</th>
+      <td width="70">（姓）</td>
+      <td><%= f.text_field :last_name %></td>
+      <td width="70">（名）</td>
+      <td><%= f.text_field :first_name %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <tr>
+      <th>フリガナ</th>
+      <td>（セイ）</td>
+      <td><%= f.text_field :last_name_kana %></td>
+      <td>（メイ）</td>
+      <td><%= f.text_field :first_name_kana %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <tr>
+      <th>メールアドレス</th>
+      <td></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      <td></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <tr>
+      <th>郵便番号（ハイフンなし）</th>
+      <td></td>
+      <td><%= f.text_field :postal_code %></td>
+      <td></td>
+    </tr>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <tr>
+      <th>住所</th>
+      <td></td>
+      <td colspan="3"><%= f.text_field :address,size: "60%" %></td>
+    </tr>
+
+    <tr>
+      <th>電話番号（ハイフンなし）</th>
+      <td></td>
+      <td><%= f.text_field :telephone_number %></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th>パスワード（６文字以上）</th>
+      <td></td>
+      <td>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th>パスワード（確認用）</th>
+      <td></td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <th></th>
+      <td></td>
+      <td><%= f.submit "新規登録", class:"btn btn-success" %></td>
+      <td></td>
+    </tr>
+  </table>
 <% end %>
 
-<%= render "public/shared/links" %>
+<div>
+<h2>既に登録済みの方</h2>
+<%= link_to "こちら",  new_customer_session_path %>からログインしてください。
+</div>
+
+</div>
+</div>
+</div>
+
+

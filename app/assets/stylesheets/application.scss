@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.main-container {
+  background-image: image-url('2.jpg');
+  background-position:center center; 
+  background-size:cover;
+  height: 350px;
+  width: 100%;
+}
+
