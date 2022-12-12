@@ -27,9 +27,11 @@
         
         <% @items.each do |item| %>
         <div class="col-md-3">
-        <%= image_tag item.image, size: "200x200" %>
-        <%= item.name %><br/>
-        ￥<%= item.price %>
+          <%= link_to public_item_path(item.id) do %>
+          <%= image_tag item.image, size: "200x200" %>
+           <%= item.name %>
+          <% end %><br/>
+        ￥<%= item.with_tax_price %>
         </div>
          
         <% end %>

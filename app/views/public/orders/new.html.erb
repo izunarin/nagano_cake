@@ -1,2 +1,43 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="container">
+  <h1>注文情報入力</h1>
+  
+    <div>
+    <%= form_with model: @order,url:  public_orders_confirm_path do |f| %>
+    <h3>支払方法</h3>
+    <div>
+     <%= f.radio_button :payment_methods, true %>
+     <%= f.label :payment_methods_true, "クレジットカード" %>
+    </div>
+    
+    <div>
+     <%= f.radio_button :payment_methods, false %>
+     <%= f.label :payment_methods_false, "銀行振込" %>
+    </div>
+    </div>
+
+    <div>
+      <h3>お届け先</h3>
+      <div>
+       <%= f.radio_button :address, false %>
+       <%= f.label :address_false, "ご自身の住所" %>
+      </div>
+      
+      <div>
+       <%= f.radio_button :address, false %>
+       <%= f.label :address_false, "登録住所から選択" %>
+      </div>
+      
+      <div>
+       <%= f.radio_button :address, false %>
+       <%= f.label :address_false, "新しいお届け先" %>
+      </div>
+    </div>
+
+    <div>
+ 　　 <%= link_to  new_public_order_path do %>
+ 　　 <h3 class="btn btn-primary text-center">確認画面へ進む</h3>
+ 　　 <% end %>
+　　</div>
+　　<% end %>
+
+</div>

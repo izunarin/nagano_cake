@@ -1,7 +1,15 @@
-<h1>ショッピングカート</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h1>ショッピングカート</h1>
+     </div>
+     <div align="right">
+      <%= button_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete,class:"btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row">
 
-
-<table　border="1" cellpadding="6" cellspacing="0">
+<table class= "table table-bordered dark" >
   <tr>
     <th>商品名</th>
     <th>単価（税込）</th>
@@ -9,29 +17,47 @@
     <th>小計</th>
     <th></th>
   </tr>
-  
+  <% @cart_items.each do |cart_item| %>
   <tr>
-    <td><%= image_tag @item.image, size: "500x300" %><%= @item.name %></td>
-    <td><%= @item.price %></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
+    <td class="p-1"><%= image_tag cart_item.item.image, size: "100x50" %><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.with_tax_price %></td>
 
-<div>
-  <%= link_to admin_items_path do %>
-  <h3 class="btn btn-primary">買い物を続ける</h3>
-  <% end %>
+     <%= form_with model: cart_item,url: public_cart_item_path(cart_item.id) do |f| %>
+    <td>
+      <%= f.select :amount, [[1], [2], [3],[4],[5],[6],[7],[8],[9],[10]] %>
+       <%= f.submit "編集", class:"btn btn-success" %>
+    </td>
+    <% end %>
+    <td><%= cart_item.item.with_tax_price* cart_item.amount %></td>
+    <td><%= link_to "削除する", public_cart_item_path(cart_item.id), method: :delete,class:"btn btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+    <% @total_price=@total_price+cart_item.item.with_tax_price* cart_item.amount %>
+   </tr>
+   <% end %>
+  </table>
 </div>
 
-<div>
-  <h3>合計金額</h3>
-  
-</div>
+<div class="row">
+  <div class="col-9">
+     <%= link_to public_items_path do %>
+     <h3 class="btn btn-primary">買い物を続ける</h3>
+     <% end %>
+  </div>
 
-<div>
-  <%= link_to  new_public_order do %>
+ <div class="col-3">
+  <table  class= "table table-bordered dark">
+    <tr>
+      <th>合計金額</th>
+      <td><%= @total_price %></td>
+    </tr>
+  </table>
+  </div>
+  </div>
+ </div>
+
+<div class="text-center">
+  <%= link_to  new_public_order_path do %>
   <h3 class="btn btn-primary">情報入力に進む</h3>
   <% end %>
+</div>
+  
 </div>

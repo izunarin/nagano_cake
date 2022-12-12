@@ -21,3 +21,13 @@
   width: 100%;
 }
 
+.dark{
+  border-color: black;
+}
+
+.table > tbody > tr > td {
+    border:1px solid black;
+}
+.table > tbody > tr > th{
+   border:1px solid black;
+}
