@@ -23,7 +23,7 @@ Rails.application.routes.draw do
  namespace :public do
   resources :addresses, only: [:index, :edit, :create, :update, :destroy] 
   resources :cart_items, only: [:index, :update, :destroy, :create]
-  resources :orders, only: [:new, :create, :index,]
+  resources :orders, only: [:new, :create, :index, :show]
   resource :customers,only:[:show, :edit, :update]
   resources :items, only: [:index, :show]
   end
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
  
   namespace :public do
     get 'customers/unsubscribe' => "customers#unsubscribe"
-    get 'customers/withdraw' => "customers#withdraw"
+    patch 'customers/withdraw' => "customers#withdraw"
   end
 
   devise_for :customers,skip: [:passwords], controllers: {

@@ -10,14 +10,24 @@
         <th>ステータス</th>
         <th>注文詳細</th>
       </tr>
+      <% @orders.each do |order| %>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= order.created_at %></td>
+        <td>
+         〒<%= order.postal_code %></br>
+          <%= order.address %></br>
+          <%= order.name %>
+        </td>
+        <td><%= @cart_item.item.name %></td>
+        <td><%= order.billing %></td>
+        <td><%= order.created_at %></td>
+        <td>
+          <%= link_to public_order_path(current_customer) do %>
+          <h3 class="btn btn-primary">表示する</h3>
+          <% end %>
+        </td>
       </tr>
+      <% end %>
     </table>
  </div>
 </div>

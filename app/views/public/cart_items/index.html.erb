@@ -19,7 +19,7 @@
   </tr>
   <% @cart_items.each do |cart_item| %>
   <tr>
-    <td class="p-1"><%= image_tag cart_item.item.image, size: "100x50" %><%= cart_item.item.name %></td>
+    <td class="p-1"><%= image_tag cart_item.item.get_image(100,50) %><%= cart_item.item.name %></td>
     <td><%= cart_item.item.with_tax_price %></td>
 
      <%= form_with model: cart_item,url: public_cart_item_path(cart_item.id) do |f| %>

@@ -1,9 +1,9 @@
 <div class="container">
-<h2>新規会員登録</h2>
+<h2>会員情報編集</h2>
 <div class="row">
 
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+<%= form_with model: @customer, url: public_customers_path do |f| %>
+
   <div class="flex-row">
   <table>
     <tr>
@@ -50,29 +50,15 @@
     </tr>
 
     <tr>
-      <th>パスワード（６文字以上）</th>
-      <td></td>
-      <td>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </td>
-      <td></td>
-    </tr>
-
-    <tr>
-      <th>パスワード（確認用）</th>
-      <td></td>
-      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
-      <td></td>
-    </tr>
-
-    <tr>
       <th></th>
       <td></td>
-      <td><%= f.submit "新規登録", class:"btn btn-success" %></td>
+      <td><%= f.submit "編集内容を保存", class:"btn btn-success" %></td>
       <td></td>
+      <td>
+       <%= link_to public_customers_unsubscribe_path do %>
+       <h3 class="btn btn-danger">退会する</h3>
+       <% end %>
+      </td>
     </tr>
   </table>
 <% end %>
