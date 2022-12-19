@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-   
+
     <div class="col-3">
       <table class="border">
         <tr>
@@ -16,28 +16,25 @@
         </tr>
         <% end %>
       </table>
+   </div>
 
-    </div>
+     <div class="col-9">
+       <h1>商品一覧</h1>
+       <div class="row">
 
-   
-     
-    <div class="container offset-md-3">
-      <h1>商品一覧</h1>
-    <div class="row">
-        
         <% @items.each do |item| %>
         <div class="col-md-3">
           <%= link_to public_item_path(item.id) do %>
-          <%= image_tag item.image, size: "200x200" %>
-           <%= item.name %>
-          <% end %><br/>
+          <%= image_tag item.image, size: "200x200" %></br>
+           <%= item.name %></br>
+          <% end %>
         ￥<%= item.with_tax_price %>
         </div>
-         
+
         <% end %>
         <%= config.default_per_page %>
         </div>
-     </div>
-    </div>
+      </div>
+
   </div>
 </div>

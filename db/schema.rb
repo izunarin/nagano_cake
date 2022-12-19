@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2022_12_03_104441) do
 
   create_table "order_details", force: :cascade do |t|
     t.integer "order_id", null: false
-    t.integer "items_id", null: false
+    t.integer "item_id", null: false
     t.integer "price", null: false
     t.integer "quantity", null: false
-    t.integer "production_status", null: false
+    t.integer "production_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

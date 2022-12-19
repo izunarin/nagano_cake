@@ -49,12 +49,12 @@
    <tr>
      <th width="70">支払方法</th>
      <td>
-    <%= Order.payment_methods_i18n[@order.payment_method] %>
+    <%= @order.payment_methods_i18n %>
     </td>
    </tr>
 
    <tr>
-     <th>お届け先</th>public_orders
+     <th>お届け先</th>
      <td><%= @order.address %></td>
    </tr>
   </table>
@@ -65,7 +65,7 @@
    <%= f.hidden_field :billing, :value => @shipping_fee+@total_price %>
    <%= f.hidden_field :name, :value => @order.name %>
    <%= f.hidden_field :shipping_fee, :value => @shipping_fee %>
-   <%= f.hidden_field :payment_methods, :value => @order.payment_method %>
+   <%= f.hidden_field :payment_methods, :value => @order.payment_methods %>
    <%= f.hidden_field :status, :value => 0 %>
    <%= f.submit "注文を確定する", class:"btn btn-success" %>
    <% end %>
