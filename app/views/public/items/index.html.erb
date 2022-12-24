@@ -32,8 +32,9 @@
         </div>
 
         <% end %>
-        <%= config.default_per_page %>
+        <%#= config.default_per_page %>
         </div>
+        <%= paginate @items %>
       </div>
 
   </div>

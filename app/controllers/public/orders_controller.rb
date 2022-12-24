@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
   def new
     @order = Order.new
     @customer = current_customer
@@ -7,7 +8,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    @order.payment_methods = params[:order][:payment_methods].to_i
+    #@order.payment_methods = params[:order][:payment_methods].to_i
     if params[:order][:select_address] == "0"
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
@@ -39,7 +40,7 @@ class Public::OrdersController < ApplicationController
      order_detail = OrderDetail.new
      order_detail.order_id = @order.id
      order_detail.item_id = cart_item.item_id
-     order_detail.price = cart_item.item.price
+     order_detail.price = cart_item.item.with_tax_price
      order_detail.quantity = cart_item.amount
      order_detail.save!
     end
@@ -55,7 +56,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    
+
   end
 
   private

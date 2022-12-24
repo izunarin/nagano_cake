@@ -1,56 +1,64 @@
 <div class="container">
-  <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
+  <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報</h1>
   <div class="row">
-    <%= form_with model: @customer,url: admin_customer_path(@customer.id), method: :patch do |f| %>
+
     <table>
+       <%= form_with model: @customer,url: admin_customer_path(@customer.id) do |f| %>
       <tr>
         <th width="200">会員ID </th>
-        <td><%= f.string_field :id %></td>
+        <td><%= @customer.id %></td>
       </tr>
-      
+
       <tr>
         <th>氏名</th>
-        <td><%= f.string_field :last_name %></td>
-        <td><%= f.string_field :first_name %></td>
+        <td><%= f.text_field :last_name %></td>
+        <td><%= f.text_field :first_name %></td>
       </tr>
-      
+
       <tr>
         <th>フリガナ</th>
-        <td><%= f.string_field :last_name_kana %></td>
-        <td><%= f.string_field :first_name_kana %></td>
+        <td><%= f.text_field :last_name_kana %></td>
+        <td><%= f.text_field :first_name_kana %></td>
       </tr>
-      
+
       <tr>
         <th>郵便番号</th>
-        <td><%= f.string_field :postal_code %></td>
+        <td><%= f.text_field :postal_code %></td>
       </tr>
-      
+
       <tr>
         <th>住所</th>
-        <td><%= f.string_field :address %></td>
+        <td><%= f.text_field :address %></td>
       </tr>
-      
+
       <tr>
         <th>電話番号</th>
-        <td><%= f.string_field :telephone_number %></td>
+        <td><%= f.text_field :telephone_number %></td>
       </tr>
-      
+
       <tr>
         <th>メールアドレス</th>
-        <td><%= f.string_field :email %></td>
+        <td><%= f.text_field :email %></td>
       </tr>
-      
+
       <tr>
         <th>会員ステータス</th>
         <td>
-          <%= f.radio_button :is_deleted, true %>
-          <%= f.label :is_deleted_true, "販売中" %>
+         <%= f.radio_button :is_deleted, true %>
+         <%= f.label :is_deleted_true, "有効" %>
 
          <%= f.radio_button :is_deleted, false %>
-         <%= f.label :is_deleted_false, "販売停止中" %>
+         <%= f.label :is_deleted_false, "退会" %>
         </td>
       </tr>
+
+      <tr>
+       <td></td>
+       <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
+      </tr>
+
+      <% end %>
     </table>
-    
+
   </div>
 </div>

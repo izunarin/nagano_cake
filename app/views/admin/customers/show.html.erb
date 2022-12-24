@@ -1,20 +1,35 @@
 <div class="container">
-  <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
+  <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
   <div class="row">
     <table>
       <tr>
-        <td>会員ID</td>
-        <td><%= @customer.id %></td>
+        <td width=150 >会員ID</td>
+        <td width=150><%= @customer.id %></td>
+        <td width=100></td>
       </tr>
       
+      <tr>
+        <td><div class="table01"></div></td>
+      </tr>
+
        <tr>
         <td>氏名</td>
-        <td colspan="3"><%= @customer.last_name.class:"col-3" %><%= @customer.first_name %></td>
+        <td><%= @customer.last_name %></td>
+        <td><%= @customer.first_name %></td>
+      </tr>
+      
+      <tr>
+        <td><div class="table01"></div></td>
       </tr>
       
        <tr>
         <td>フリガナ</td>
-        <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+        <td><%= @customer.last_name_kana %></td>
+        <td><%= @customer.first_name_kana %></td>
+      </tr>
+      
+      <tr>
+        <td><div class="table01"></div></td>
       </tr>
       
        <tr>
@@ -22,9 +37,17 @@
         <td><%= @customer.postal_code %></td>
       </tr>
       
+      <tr>
+        <td><div class="table01"></div></td>
+      </tr>
+      
        <tr>
         <td>住所</td>
-        <td><%= @customer.address %></td>
+        <td colspan="3"><%= @customer.address %></td>
+      </tr>
+      
+      <tr>
+        <td><div class="table01"></div></td>
       </tr>
       
        <tr>
@@ -32,31 +55,42 @@
         <td><%= @customer.telephone_number %></td>
       </tr>
       
+      <tr>
+        <td><div class="table01"></div></td>
+      </tr>
+      
        <tr>
         <td>メールアドレス</td>
         <td><%= @customer.email %></td>
       </tr>
       
+      <tr>
+        <td><div class="table01"></div></td>
+      </tr>
+      
        <tr>
         <td>会員ステータス</td>
         <td>
-          <%= if @customer.is_deleted? %>
+          <% if @customer.is_deleted == true %>
             有効
           <% else %>
             退会
           <% end %>
         </td>
       </tr>
-      
+
       <tr>
         <td></td>
         <td>
-          <%= link_to edit_admin_customer_path(@custome.id) do %>
+          <%= link_to edit_admin_customer_path(@customer.id) do %>
           <h3 class="btn btn-success">編集する</h3>
           <% end %>
         </td>
+        
+        <td></td>
+        
         <td>
-          <%= link_to admin_order_path(@order.id) do %>
+          <%= link_to admin_order_path(@customer.id) do %>
           <h3 class="btn btn-primary">注文履歴一覧を見る</h3>
           <% end %>
         </td>

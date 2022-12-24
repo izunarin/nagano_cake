@@ -1,12 +1,11 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all
     @genres = Genre.all
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
-      @items = @genre.items
+      @items = @genre.items.page(params[:page]).per(8)
     else
-      @items = Item.all
+      @items = Item.page(params[:page]).per(8)
     end
     
   end

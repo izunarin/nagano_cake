@@ -65,16 +65,16 @@
       <table border="1" cellpadding="6" cellspacing="0">
         <tr>
           <th width="400">商品</th>
-          <th width="200">単価(税込み)</th>
+          <th width="200">単価(税込)</th>
           <th width="100">個数</th>
           <th width="150">小計</th>
         </tr>
-        <% @order_details.each do |order_details| %>
+        <% @order_details.each do |order_detail| %>
         <tr>
-          <td><%= order_details.item.name %></td>
-          <td><%= order_details.price %></td>
-          <td><%= order_details.quantity %></td>
-          <td><%= order_details.price*order_details.quantity %></td>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.price %></td>
+          <td><%= order_detail.quantity %></td>
+          <td><%= order_detail.price*order_detail.quantity %></td>
         </tr>
         <% end %>
       </table>
