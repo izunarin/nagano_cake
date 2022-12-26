@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
 
-  #before_action :customer_state, only: [:create]
+  before_action :customer_state, only: [:create]
 
   def after_sign_in_path_for(resource)
     root_path
@@ -43,7 +43,7 @@ def customer_state
 
   return if !@customer
 
-  if @customer.valid_password?(params[:customer][:password])&& @customer.is_deleted == false
+  if !@customer.valid_password?(params[:customer][:password])|| @customer.is_deleted == true
    redirect_to root_path
    
   end

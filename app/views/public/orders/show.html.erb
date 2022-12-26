@@ -29,9 +29,7 @@
            <tr>
             <th>ステータ</th>
             <td>
-              <% @order.order_details.each do |order_detail| %>
-              <%#= Order_detail.production_statuses_i18n[] %>
-              <% end %>
+              <%= @order.status_i18n %>
             </td>
           </tr>
          </table>

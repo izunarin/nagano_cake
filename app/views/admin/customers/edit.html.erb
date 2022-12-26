@@ -1,9 +1,9 @@
 <div class="container">
   <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報</h1>
   <div class="row">
-
+   <%= form_with model: @customer,url: admin_customer_path(@customer.id) do |f| %>
     <table>
-       <%= form_with model: @customer,url: admin_customer_path(@customer.id) do |f| %>
+       
       <tr>
         <th width="200">会員ID </th>
         <td><%= @customer.id %></td>
@@ -44,10 +44,10 @@
       <tr>
         <th>会員ステータス</th>
         <td>
-         <%= f.radio_button :is_deleted, true %>
+         <%= f.radio_button :is_deleted, false %>
          <%= f.label :is_deleted_true, "有効" %>
 
-         <%= f.radio_button :is_deleted, false %>
+         <%= f.radio_button :is_deleted, true  %>
          <%= f.label :is_deleted_false, "退会" %>
         </td>
       </tr>
@@ -57,8 +57,8 @@
        <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
       </tr>
 
-      <% end %>
+     
     </table>
-
+    <% end %>
   </div>
 </div>

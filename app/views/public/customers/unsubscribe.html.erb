@@ -6,7 +6,7 @@
       これまでの購入履歴が閲覧できなくなります。<br>
       大会する場合は、「退会する」をクリックしてください。
      </p>
-      <%= link_to public_customers_withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" } do %>
+      <%= link_to public_customers_withdraw_path, method: :patch, data: { confirm: "本当に退会しますか？" } do %>
        <h3 class="btn btn-success">退会する</h3>
        <% end %>
        

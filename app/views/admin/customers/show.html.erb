@@ -7,7 +7,7 @@
         <td width=150><%= @customer.id %></td>
         <td width=100></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
@@ -17,61 +17,61 @@
         <td><%= @customer.last_name %></td>
         <td><%= @customer.first_name %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>フリガナ</td>
         <td><%= @customer.last_name_kana %></td>
         <td><%= @customer.first_name_kana %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>郵便番号</td>
         <td><%= @customer.postal_code %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>住所</td>
         <td colspan="3"><%= @customer.address %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>電話番号</td>
         <td><%= @customer.telephone_number %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>メールアドレス</td>
         <td><%= @customer.email %></td>
       </tr>
-      
+
       <tr>
         <td><div class="table01"></div></td>
       </tr>
-      
+
        <tr>
         <td>会員ステータス</td>
         <td>
-          <% if @customer.is_deleted == true %>
+          <% if @customer.is_deleted == false %>
             有効
           <% else %>
             退会
@@ -86,9 +86,9 @@
           <h3 class="btn btn-success">編集する</h3>
           <% end %>
         </td>
-        
+
         <td></td>
-        
+
         <td>
           <%= link_to admin_order_path(@customer.id) do %>
           <h3 class="btn btn-primary">注文履歴一覧を見る</h3>
