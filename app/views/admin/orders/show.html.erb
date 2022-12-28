@@ -1,46 +1,46 @@
 <div class="container">
   <h3>注文履歴詳細</h3>
   <table>
-      <tr>
-        <th>購入者</th>
-        <td>
-          <%= link_to admin_customer_path(@order.id) do %>
+    <tr>
+      <th>購入者</th>
+      <td>
+        <%= link_to admin_customer_path(@order.id) do %>
           <%= @order.name %>
-          <% end %>
-        </td>
-        <td></td>
-      </tr>
+        <% end %>
+      </td>
+      <td></td>
+    </tr>
 
-      <tr>
-        <th>注文日</th>
-        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-        <td></td>
-      </tr>
+    <tr>
+      <th>注文日</th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      <td></td>
+    </tr>
 
-      <tr>
-        <th>配送先</th>
-        <td colspan="2">
-          <%= @order.postal_code %><%= @order.address %><br>
-          <%= @order.name %>
-          </td>
-      </tr>
+    <tr>
+      <th>配送先</th>
+      <td colspan="2">
+        <%= @order.postal_code %><%= @order.address %><br>
+        <%= @order.name %>
+      </td>
+    </tr>
 
-      <tr>
-        <th>支払方法</th>
-        <td><%= @order.payment_methods_i18n %></td>
-        <td></td>
-      </tr>
+    <tr>
+      <th>支払方法</th>
+      <td><%= @order.payment_methods_i18n %></td>
+      <td></td>
+    </tr>
 
 
-      <tr>
-        <th>注文ステータス</th>
-        <%= form_with model:@order,url: admin_order_path(@order.id) do |f| %>
+    <tr>
+      <th>注文ステータス</th>
+      <%= form_with model:@order,url: admin_order_path(@order.id) do |f| %>
         <td>
           <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
         </td>
         <td><%= f.submit "更新", class:"btn btn-success" %></td>
-        <% end %>
-      </tr>
+      <% end %>
+    </tr>
   </table>
 
   <div class="row box9">
@@ -54,18 +54,18 @@
           <th width="200">製作ステータス</th>
         </tr>
 
-        <% @order_details.each do |order_detail| %>
+       <% @order_details.each do |order_detail| %>
         <tr>
-          <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.price %></td>
-          <td><%= order_detail.quantity %></td>
-          <td><%= order_detail.price*order_detail.quantity %></td>
-          <td>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.quantity %></td>
+            <td><%= order_detail.price*order_detail.quantity %></td>
+            <td>
              <%= form_with model:order_detail,url: admin_order_detail_path(order_detail.id) do |f| %>
-             <%= f.select :production_status, OrderDetail.production_statuses.keys.map { |k| [I18n.t("enums.order_detail.production_status.#{k}"), k] } %>
-             <%= f.submit "更新", class:"btn btn-success" %>
+               <%= f.select :production_status, OrderDetail.production_statuses.keys.map { |k| [I18n.t("enums.order_detail.production_status.#{k}"), k] } %>
+               <%= f.submit "更新", class:"btn btn-success" %>
              <% end %>
-          </td>
+            </td>
         </tr>
         <% end %>
       </table>
